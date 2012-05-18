@@ -1,7 +1,9 @@
 package me.supermaxman.blastworks;
 
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 public class Rocket extends Thread {
 	
 	Block rocket;
@@ -11,7 +13,14 @@ public class Rocket extends Thread {
 	public void run(){
 		int i = 1;
 		while(i<=50){
+			
 			rocket.getRelative(0, 0+i-1, 0).setTypeId(0);
+			
+			for (Player p : rocket.getWorld().getPlayers()){
+				
+				p.playEffect(rocket.getRelative(0, 0+i-1, 0).getLocation(), Effect.POTION_BREAK, 5);
+				
+			}
 			rocket2.getRelative(0, 0+i-1, 0).setTypeId(0);
 			if (rocket2.getRelative(0, 0+i+1, 0).getTypeId()==0){
 				
